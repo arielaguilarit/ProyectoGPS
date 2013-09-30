@@ -1,0 +1,114 @@
+
+<!DOCTYPE html>
+<!-- saved from url=(0062)http://twitter.github.io/bootstrap/examples/justified-nav.html -->
+<html lang="en">
+
+     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <title> GPS </title>
+        <!-- Bootstrap -->
+        <script src="../bootstrap/js/funciones_nueva_pagina.js"></script> 
+        <script type="text/javascript" src="../bootstrap/js/jquery-1.3.2.min.js"></script> 
+        <link href="../bootstrap/css/bootstrapp.css" rel="stylesheet">
+        <link rel='stylesheet' href='../bootstrap/css/estilogeneral.css' media='all'>
+
+        <!-- FancyBox librerias -->
+        <script lang="javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script type="text/javascript" src="../fancybox/lib/jquery-1.9.0.min.js"></script>
+        <script type="text/javascript" src="../fancybox/source/jquery.fancybox.pack.js"></script>
+        <link rel="stylesheet" type="text/css" href="../fancybox/source/jquery.fancybox.css" />
+
+        <!-- Librerias Ajax -->
+        <script type="text/javascript" src="../ingresoRutaControl/funciones.js"></script>
+        <!-- Icono Pestaña -->
+        <link href="http://icons.iconarchive.com/icons/icons-land/vista-map-markers/16/Map-Marker-Marker-Outside-Azure-icon.png" type="image/x-icon" rel="shortcut icon">
+        <!-- HTML5 shim, para que IE6-8 soporte elementos HTML5 -->
+        <!--[if lt IE 9]>
+          <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+
+    </head>
+    <!--<img src="../bootstrap/img/cabecera.png" class="bg"/>-->
+   <body onLoad="load()" onUnload="GUnload()">
+    
+
+        <!--  Ejecuta la Aplicacion Fancybox -->
+        <script type="text/javascript">
+          $(document).ready(function(){
+            //Fancy es el nombre de la class
+            $(".fancy").fancybox({
+              'autoScale': false,
+              'transitionIn': 'none',
+              'transitionOut': 'none',
+              'width': 500,
+              'height': 800,
+              'type': 'iframe',
+              'onClosed': function() { parent.location.reload(true); }
+            });//Fin Fancybox
+            $().ajaxStart(function() {
+              $('#loading').show();
+              $('#result').hide();
+              }).ajaxStop(function() {
+                $('#loading').hide();
+                $('#result').fadeIn('slow');
+              });//Fin AjaxStart y AjaxStop
+            $('#form, #fat, #fo3').submit(function() {
+              $.ajax({
+                type: 'POST',
+                url: $(this).attr('action'),
+                data: $(this).serialize(),
+                success: function(data) {
+                  $('#result').html(data);
+                }
+              })
+            return false;
+            });//Fin Form
+          });//Fin document.ready
+        </script>
+        
+        <div class="container row" id="encabezado">
+           <?php 
+            if(isset($_SESSION["nombre"]))
+            {
+              
+              echo "<div class='span3'><h10 class='muted'> Bienvenido: ".ucfirst($_SESSION["nombre"])."</h10></div>";
+              echo "<div class='span5'><h10 class='muted'><a href='../home/logout.php'>Cerrar Sesion</a></h10></div>";
+              echo "<div='span3'>";
+                  echo "<div class='masthead' >";
+                    echo "<ul class='nav nav-pills'>";
+                      echo "<li ><a href='../home/home.php'><i class='icon-home icon-black'></i>Home</a><span class='divider'></span></li>";
+                      //echo "<li ><a href='#'>Soporte</a><span class='divider'></span></li>";
+                      echo "<li><a href='../home/contacto.php'>Contactenos</a><span class='divider'></span></li>";
+                    echo "</ul>";
+                echo "</div>";             
+                echo "<div class='img-circle span2' style='circle' id='logo'><img src='../bootstrap/img/ica140x140.png'></div>'";
+                echo "<div ><h2 class='muted'>Servicio de Monitoreo y Control GPS</h2></div>";
+                //if($_SESSION["privilegio"] == 1)
+                  //echo "<h3 class='muted'>Administrador Control GPS</h3>";
+                //else if($_SESSION["privilegio"] == 2)
+                 // echo " <h3 class='muted'>Operador Control GPS</h3>";
+                //else if($_SESSION["privilegio"] == 3)
+                  //echo " <h3 class='muted'>Usuario Control GPS</h3>";
+            }
+            else
+            {
+              echo "<div='span3'>";
+                  echo "<div class='masthead' >";
+                    echo "<ul class='nav nav-pills'>";
+                      echo "<li ><a href='../home/home.php'><i class='icon-home icon-black'></i>Home</a><span class='divider'></span></li>";
+                      //echo "<li ><a href='#'>Soporte</a><span class='divider'></span></li>";
+                      echo "<li><a href='../home/contacto.php'>Contacto</a><span class='divider'></span></li>";
+                    echo "</ul>";
+                echo "</div>";             
+                echo "<div class='img-circle span2' style='circle' id='logo'><img src='../bootstrap/img/ica140x140.png'></div>'";
+                echo "<div ><h2 class='muted'>Servicio de Monitoreo y Control GPS</h2></div>";
+            }
+            ?>
+          
+        </div>
+        
+        

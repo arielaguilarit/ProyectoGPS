@@ -1,0 +1,57 @@
+#info{
+	font-size:17px;
+	margin-left:50%;
+}
+#titulo{
+	margin-left:50%;
+}
+li{
+	padding:0px 0px 15px 0px;
+}
+#div_contacto{
+	display:none;
+	/*visibility:hidden;*/
+}
+#div_productos{
+	display:none;
+	/*visibility:hidden;*/
+}
+#div_estetica{
+	display:none;
+	/*visibility:hidden;*/
+}
+.form-emp{
+	padding: 0px 0px 9px 0px;
+}
+.precio{
+		width:50px;
+}
+.nombre_producto{
+	width:170px;
+}
+#lista_productos label {
+float: left;
+display: block;
+margin: 1em 1em 0 0;
+font-weight: bold;
+}
+
+img.bg {
+            /* Establezca reglas para el relleno de fondo */
+            min-height: 100%;
+            min-width: 100%;
+            
+            /* Establecer la escala proporcional */
+            width: 100%;
+            height: 120%;
+            
+            /* Establecer posicion */
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        
+        @media screen and (max-width: 1024px){
+            img.bg {
+                left: 50%;
+                margin-left: -512px; }
